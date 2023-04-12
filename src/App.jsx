@@ -33,29 +33,28 @@ function News() {
             <div className="card top-story-card">
               <img src={imgUrl[0]} className="card-img-top top-story-image" />
               <div className="card-body">
-                <div style={{ fontSize: "14px" }}>
-                  <b>BY: {stories[0].story["author-name"]}</b>
+                <div >
+                  <label className="author"><b>By</b> {stories[0].story["author-name"]}</label>
                 </div>
-                <h5 style={{ marginTop: "15px" }} className="card-title">
+                <h5 className="card-title">
                   {stories[0].story.headline}
                 </h5>
                 <p className="card-text">{stories[0].story.subheadline}</p>
               </div>
             </div>
-            <p className="add-box"></p>
           </div>
           <div className="card-container">
             {stories.slice(1).map((story, index) => (
-              <div className="card" key={index}>
-                <img src={imgUrl[index + 1]} className="card-img-top" />
+              <div className="card" >
+                <img src={imgUrl[index + 1]} className="card-img-bot" />
                 <div className="card-body">
-                  <div style={{ fontSize: "14px" }}>
-                    <b>By: {story.story["author-name"]}</b>
+                  <div >
+                    <label className="author"><b>By</b> {story.story["author-name"]}</label>
                   </div>
-                  <h5 style={{ marginTop: "15px" }} className="card-title">
+                  <h5  className="card-title-bot">
                     {story.story.headline}
                   </h5>
-                  <p className="card-text">{story.story.subheadline}</p>
+                  <p className="card-text-bot">{story.story.subheadline}</p>
                 </div>
               </div>
             ))}
