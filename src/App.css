@@ -8,8 +8,8 @@ body {
   grid-gap: 16px;
   margin: 0 auto;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-rows: 335.97px 197.41px auto auto;
+  /* grid-template-rows: repeat(4, 1fr); */
+  grid-template-rows: auto min-content auto auto;
 }
 
 .top-story-container {
@@ -20,7 +20,6 @@ body {
   padding-bottom: 16px;
   border-radius: 3px;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15);
-  height: 517.38px;
 }
 
 .top-story-image {
@@ -51,6 +50,7 @@ body {
   font-family: "Merriweather", serif;
   margin-bottom: 4px;
   margin-top: 5px;
+  margin-right: 16px;
 }
 .card-container {
   grid-row: 3 / span 2;
@@ -58,6 +58,7 @@ body {
   display: grid;
   grid-gap: 16px;
   grid-template-columns: repeat(3, 1fr);
+  
 }
 .card {
   background-color: white;
@@ -81,6 +82,102 @@ body {
   font-size: 16.3px;
   color: #666666;
   font-family: "Merriweather", serif;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
   margin-top: 5px;
+  margin-right: 16px;
+}
+.add-content{
+  width: 300px;
+  height: 250px;
+  background-color: #666666;
+  margin-top: 16px;
+}
+.add-box{
+  grid-row: 1 ;
+  grid-column: 3;
+  padding-left: 16px;
+}
+
+
+@media only screen and (max-width:375px) {
+  .news-container {
+    width: 343px;
+    height: 3083.42px;
+    display: grid;
+    grid-gap: 16px;
+    margin-left: 16px;
+    margin-top: 16px;
+    grid-template-rows: minmax(auto, 411.08px) min-content minmax(auto, 393.05px) minmax(auto, 393.05px) minmax(min-content, 373.05px) minmax(min-content, 373.05px)  auto;
+    grid-template-columns: 327px;
+  }
+  .top-story-container {
+    grid-row: 1 ;
+    max-height: 395.09px;
+    margin-top: 16px;
+    background-color: white;
+    padding-bottom: 16px;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15);
+    width: 343px;
+  }
+  .top-story-image {
+    width: 100%;
+    height: 192.94px;
+    object-fit: cover;
+  }
+  .author {
+    color: #7f7f7f;
+    font-size: 14px;
+  }
+  .card-title {
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  .card-text {
+    font-size: 18.5px;
+    color: #666666;
+    font-family: "Merriweather", serif;
+    margin-bottom: 4px;
+    margin-top: 5px;
+  }
+  .add-content{
+    width: 300px;
+    height: 250px;
+    background-color: #666666;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: -16px;
+  }
+  .add-box{
+    grid-row: 2 !important;
+    grid-column: 1 !important;
+    height: min-content;
+  }
+  .card-container {
+    grid-row: 3 /span 5;
+    grid-column: 1;
+    grid-template-columns: 327px;
+  }
+  .card-img-bot {
+    width: 100%;
+    height: 186.19px;
+    object-fit: cover;
+  }
+  .card {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15);
+    width: 343px;
+  }
+  .card-text-bot {
+    font-size: 16.3px;
+    color: #666666;
+    font-family: "Merriweather", serif;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding-right: 10px;
+  }
 }
