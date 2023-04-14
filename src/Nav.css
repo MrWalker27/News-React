@@ -1,90 +1,173 @@
 @font-face {
-    font-family: "Lato";
-    src: url("../src/fonts/Lato-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #021F3E;
-    width: 1025px;
-    margin: auto;
-    height: 44px;
-  }
-  
-  nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-.search1{
-    width: 78.86 !important;
-    text-align: right;
-    background-color: aqua;
-    color: white;
+  font-family: "Lato";
+  src: url("../src/fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
-  
-  
-  nav ul li:last-child {
-    margin-right: 0;
-  }
-  
-  nav ul li.dropdown {
-    position: relative; 
-    width: 157.69px;
-    text-align: center;
-  }
-  
-  nav ul li.dropdown ul {
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #021f3e;
+  width: 1025px;
+  margin: auto;
+  height: 44px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.search1 {
+  width: 78.86 !important;
+  text-align: right;
+  background-color: aqua;
+  color: white;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li.dropdown {
+  position: relative;
+  width: 157.69px;
+  text-align: center;
+}
+
+nav ul li.dropdown ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: #021f3e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+nav ul li.dropdown:hover ul {
+  display: block;
+}
+nav ul li.dropdown ul:hover {
+  display: block;
+}
+
+nav ul li.dropdown ul li {
+  margin-bottom: 10px;
+}
+
+nav ul li.dropdown ul li:last-child {
+  margin-bottom: 0;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+  font-weight: 600;
+}
+.item {
+  width: 157.69px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+  font-weight: 600;
+  text-align: center;
+}
+.dropdown-menu {
+  width: 157.69px !important;
+  border-top: 2px solid white;
+}
+nav ul li.dropdown ul li a {
+  display: block;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.hamburger {
+  display: none;
+}
+.itemMobile {
+  display: none;
+}
+.navMobileHide {
+  display: none;
+}
+.navMobileShow {
+  display: none;
+}
+@media only screen and (max-width: 375px) {
+  nav ul li.dropdownMobile ul {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 200px;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,.15);
-  }
-  
-  nav ul li.dropdown:hover ul {
-    display: block;
-  }
-  
-  nav ul li.dropdown ul li {
-    margin-bottom: 10px;
-  }
-  
-  nav ul li.dropdown ul li:last-child {
-    margin-bottom: 0;
-  }
-  nav a{
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-family: "Lato";
-    font-weight: 600;
-  }
-  .item{
-    width: 157.69px;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-family: "Lato";
-    font-weight: 600;
+    background-color: #021f3e;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     text-align: center;
   }
-  nav ul li.dropdown ul li a {
-    display: block;
-    color: #333;
-    font-weight: bold;
-    text-decoration: none;
+  .dropdownMobile-menu {
+    display: none;
   }
-  
-.test{
-    height: 10px;
-    width: 1025px;
-    background-color: bisque;
-    margin: auto;
+  .nav ul li.dropdown {
+    position: relative;
+    width: 375px;
+    text-align: center;
+  }
+  .navMobileShow {
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+    align-items: center;
+  }
+  nav {
+    flex-direction: row;
+    height: auto;
+    width: 375px;
+    align-items: end;
+  }
+  .hamburger {
+    display: block;
+  }
+  .item {
+    display: none;
+  }
+  .dropdown {
+    display: none;
+  }
+  .search {
+    display: none;
+  }
+  .itemMobile {
+    display: block;
+
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .navMobile {
+    flex-direction: column;
+    width: 375px;
+    align-items: center;
+  }
+  .mobileMoreShow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 375px;
+    border-top: 2px solid white;
+  }
+  .mobileMoreHide {
+    display: none;
+  }
+  .itemMd {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
 }
