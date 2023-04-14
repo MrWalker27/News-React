@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/News-React-api/static/css/main.81662b43.css",
-    "main.js": "/News-React-api/static/js/main.9bad1887.js",
+    "main.css": "/News-React-api/static/css/main.79934537.css",
+    "main.js": "/News-React-api/static/js/main.8fccb6e3.js",
+    "static/media/Merriweather-Regular.ttf": "/News-React-api/static/media/Merriweather-Regular.da67ca8c38ef44c4773d.ttf",
+    "static/media/Lato-Regular.ttf": "/News-React-api/static/media/Lato-Regular.9d883d540ee2b4de8024.ttf",
     "index.html": "/News-React-api/index.html",
-    "main.81662b43.css.map": "/News-React-api/static/css/main.81662b43.css.map",
-    "main.9bad1887.js.map": "/News-React-api/static/js/main.9bad1887.js.map"
+    "main.79934537.css.map": "/News-React-api/static/css/main.79934537.css.map",
+    "main.8fccb6e3.js.map": "/News-React-api/static/js/main.8fccb6e3.js.map"
   },
   "entrypoints": [
-    "static/css/main.81662b43.css",
-    "static/js/main.9bad1887.js"
+    "static/css/main.79934537.css",
+    "static/js/main.8fccb6e3.js"
   ]
 }
