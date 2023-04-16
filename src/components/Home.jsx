@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "../App.css";
 import { NavLink } from "react-router-dom";
+import { fetchTopStories } from "../api/api";
+
 
 
 function Home() {
   const [stories, setStories] = useState([]);
-  const url = "/api/v1/collections/top-story";
 
   useEffect(() => {
-      axios.get(url).then((response) => {
-        setStories(response.data.items.slice(0, 7));
-      });
+    const loadStories = async () => {
+      const data = await fetchTopStories();
+      setStories(data);
+    };
+    loadStories();
   }, []);
 
   let imgUrl = [];
@@ -52,7 +54,11 @@ function Home() {
         </NavLink>
           
           
-          <div className="add-box">
+          <div className="add-box1">
+          <div className="add-content" >
+          </div>
+            </div>
+            <div className="add-box2">
           <div className="add-content" >
           </div>
           </div>

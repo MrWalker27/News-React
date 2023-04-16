@@ -92,10 +92,16 @@ body {
   background-color: #666666;
   margin-top: 16px;
 }
-.add-box{
+.add-box1{
   grid-row: 1 ;
   grid-column: 3;
   padding-left: 16px;
+}
+.add-box2{
+  grid-row: 1 ;
+  grid-column: 3;
+  padding-left: 16px;
+  margin-top: 290px;
 }
 
 
@@ -151,13 +157,20 @@ body {
     margin-bottom: 16px;
     margin-left: -16px;
   }
-  .add-box{
+  .add-box1{
     grid-row: 2 !important;
     grid-column: 1 !important;
     height: min-content;
+    margin-top: 65px;
+  }
+  .add-box2{
+    grid-row: 3 !important;
+    grid-column: 1 !important;
+    height: min-content;
+    margin-top: 0px;
   }
   .card-container {
-    grid-row: 3 /span 5;
+    grid-row: 4 /span 5;
     grid-column: 1;
     grid-template-columns: 327px;
   }
