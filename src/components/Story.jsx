@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import "../Story.css";
+import "../css/Story.css";
 import { useState, useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { fetchStoryBySlug } from "../api/api";
@@ -48,7 +48,7 @@ function Story() {
               {text.slice(0).map((cards) => (
                 <>
                   {cards["story-elements"]
-                    .filter((story) => story.type === "text").slice(1)
+                    .filter((story) => story.type === "text").slice(0)
                     .map((story) => (
                       <div className="text">{ReactHtmlParser(story.text) }</div>
                     ))}

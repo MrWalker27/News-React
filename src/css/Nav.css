@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Lato";
-  src: url("../src/fonts/Lato-Regular.ttf") format("truetype");
+  src: url("../fonts/Lato-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -23,7 +23,6 @@ nav ul {
 .search1 {
   width: 78.86 !important;
   text-align: right;
-  background-color: aqua;
   color: white;
 }
 
@@ -78,9 +77,19 @@ nav a {
   font-weight: 600;
   text-align: center;
 }
+.itemd{
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itemd:hover{
+  background-color: #0E396E;
+}
 .dropdown-menu {
-  width: 157.69px !important;
+  width: 200px !important;
   border-top: 2px solid white;
+  border-bottom: 2px solid white;
 }
 nav ul li.dropdown ul li a {
   display: block;
@@ -102,6 +111,7 @@ nav ul li.dropdown ul li a {
 .navMobileShow {
   display: none;
 }
+
 @media only screen and (max-width: 375px) {
   nav ul li.dropdownMobile ul {
     display: none;
@@ -156,14 +166,15 @@ nav ul li.dropdown ul li a {
     width: 375px;
     align-items: center;
   }
-  .mobileMoreShow {
+  .mobileItemShow {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 375px;
     border-top: 2px solid white;
+    border-bottom: 2px solid white;
   }
-  .mobileMoreHide {
+  .mobileItemHide {
     display: none;
   }
   .itemMd {

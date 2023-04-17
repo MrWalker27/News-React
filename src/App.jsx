@@ -1,8 +1,9 @@
-import "./App.css";
+import "./css/App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Story from "./components/Story";
 import Nav from "./components/Nav";
+import NewsMain from "./components/NewsMain";
 function App() {
   
   return (
@@ -18,6 +19,12 @@ function App() {
           path="/Story/:slug1/:slug2"
           element={
             <Story />
+          }
+        />
+        <Route
+          path="/News"
+          element={
+            <NewsMain />
           }
         />
       </Routes>

@@ -9,4 +9,9 @@ export const fetchStoryBySlug = async (slug1, slug2) => {
     const url = `/api/v1/stories-by-slug?slug=news/${slug1}/${slug2}`;
     const response = await axios.get(url);
     return response.data.story;
-  };
+};
+export const fetchNewsMain = async () => {
+  const url = "/api/v1/collections/news";
+  const response = await axios.get(url);
+  return response.data.items.slice(0, 10);
+}

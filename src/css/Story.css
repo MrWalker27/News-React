@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Merriweather";
-  src: url("../src/fonts/Merriweather-Regular.ttf") format("truetype");
+  src: url("../fonts/Merriweather-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Lato";
-  src: url("../src/fonts/Lato-Regular.ttf") format("truetype");
+  src: url("../fonts/Lato-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
