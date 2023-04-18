@@ -22,14 +22,14 @@ function Story() {
     const timer = setTimeout(() => {
       setShowError(true);
     }, 700);
-  },[]);
-  
+  }, []);
+
   const mainImgUrl =
     "https://gumlet.assettype.com/" + story["hero-image-s3-key"];
 
   return (
     <>
-      {(showError && story.length == 0) && (
+      {showError && story.length == 0 && (
         <div className="containerE">
           <div className="error">Error 404 !!! New article not found</div>
         </div>
@@ -48,9 +48,10 @@ function Story() {
               {text.slice(0).map((cards) => (
                 <>
                   {cards["story-elements"]
-                    .filter((story) => story.type === "text").slice(0)
+                    .filter((story) => story.type === "text")
+                    .slice(0)
                     .map((story) => (
-                      <div className="text">{ReactHtmlParser(story.text) }</div>
+                      <div className="text">{ReactHtmlParser(story.text)}</div>
                     ))}
                 </>
               ))}
@@ -62,7 +63,6 @@ function Story() {
               <div className="add-content"></div>
             </div>
           </div>
-          
         </>
       )}
     </>

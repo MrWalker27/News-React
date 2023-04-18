@@ -1,13 +1,10 @@
 body {
     background-color: #eaeaea;
   }
-  .news-container {
+  .news-container1 {
     width: 1025px;
     height: 1898.86px;
     margin: 0 auto;
-    
-    grid-template-rows: minmax(auto, 411.08px) min-content minmax(auto, 393.05px) minmax(auto, 393.05px) minmax(min-content, 373.05px) minmax(min-content, 373.05px)  auto;
-    grid-template-columns: 327px;
   }
   .heading  {
     font-size: 26px;
@@ -32,13 +29,13 @@ body {
     margin-top: 10px;
     margin-bottom: 0px;
   }
-  .card-container {
+  .card-container1 {
     display: grid;
     grid-template-columns: 323px 323px;
     grid-gap: 16px;
     grid-template-rows: repeat(5,1fr);
   }
-  .card {
+  .card1 {
     background-color: white;
     border-radius: 3px;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15);
@@ -71,20 +68,20 @@ body {
     background-color: #666666;
     margin-top: 16px;
   }
-  .add-box1{
+  .add-box11{
     padding-left: 16px;
   }
   
   
   @media only screen and (max-width:375px) {
-    .news-container {
+    .news-container1 {
       width: 343px;
       height: 3083.42px;
       margin-left: 16px;
       margin-top: 16px;
     }
     
-    .card-container {
+    .card-container1 {
       grid-row: 4 /span 5;
       grid-column: 1;
       grid-template-columns: 327px;
@@ -111,7 +108,7 @@ body {
       margin-bottom: 16px;
       margin-left: 0px;
     }
-    .add-box1{
+    .add-box11{
       height: min-content;
       margin-top: 15px;
       display: none;

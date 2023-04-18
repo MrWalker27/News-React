@@ -31,15 +31,20 @@ function NewsMain() {
   }
   return (
     <>
-      <div className="news-container">
+      <div className="news-container1">
+        <hr className="hr"></hr>
+        <h1 className="heading">News</h1>
+        <table style={{ marginTop: "20px" }}>
+          <tr>
+            <td>
               {stories.length > 0 && (
                 <>
-                  <div className="card-container">
+                  <div className="card-container1">
                     {stories.slice().map((story, index) => (
-                      <div className="card">
+                      <div className="card1">
                         <NavLink
                           style={{ textDecoration: "none", color: "black" }}
-                          
+                          to={"/Story/" + slugUrl[index]}
                         >
                           <img src={imgUrl[index]} className="card-img-bot" />
                           <div className="card-body">
@@ -61,10 +66,15 @@ function NewsMain() {
                   </div>
                 </>
               )}
+            </td>
+            <td style={{ verticalAlign: "top" }}>
               {" "}
-              <div className="add-box1">
+              <div className="add-box11">
                 <div className="add-content"></div>
               </div>
+            </td>
+          </tr>
+        </table>
       </div>
     </>
   );

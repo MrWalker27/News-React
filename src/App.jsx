@@ -8,6 +8,7 @@ function App() {
   
   return (
     <><div>{Nav()}</div>
+      
       <Routes>
         <Route
           path="/News-React-api"
