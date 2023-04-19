@@ -3,7 +3,7 @@ body {
   }
   .news-container1 {
     width: 1025px;
-    height: 1898.86px;
+    height: 2349.64px;
     margin: 0 auto;
   }
   .heading  {
@@ -76,7 +76,7 @@ body {
   @media only screen and (max-width:375px) {
     .news-container1 {
       width: 343px;
-      height: 3083.42px;
+      height: 4303.42px;
       margin-left: 16px;
       margin-top: 16px;
     }
