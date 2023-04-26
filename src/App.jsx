@@ -5,6 +5,7 @@ import Story from "./components/Story";
 import Nav from "./components/Nav";
 import NewsMain from "./components/NewsMain";
 import Footer from "./components/footer";
+import Search from "./components/Search";
 
 function App() {
   
@@ -28,6 +29,12 @@ function App() {
           path="/News"
           element={
             <NewsMain />
+          }
+        />
+        <Route
+          path="/Search/:slug1"
+          element={
+            <Search />
           }
         />
       </Routes>

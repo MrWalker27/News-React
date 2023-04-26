@@ -111,7 +111,51 @@ nav ul li.dropdown ul li a {
 .navMobileShow {
   display: none;
 }
+.searchCont{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #021f3e;
+  width: 1025px;
+  margin: auto;
+  height: auto;
+  flex-direction: column;
+}
+.searchContH{
+  display: none;
+}
+.searchHr{
+  border: 1px solid white;
+  width: 1025px;
+  margin-bottom: 19px;
+}
+.searchBar{
+  width: 678.97px;
+  margin-bottom: 19px;
+  height: 36px;
+  margin-right: 48px;
+  background-color: #0E396E;
+  color: #ffffff;
+  border-radius: 0px;
+  border: 0px;
+  padding-left: 16px;
+}
+.searchBar::placeholder{
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
 
+}
+.searchButton{
+  width: 96px;
+  height: 36px;
+  border-radius: 0px;
+  background-color: #021f3e;
+  color: #ffffff;
+  border: 1px solid white;
+  font-size: 16px;
+  font-family: "Lato";
+}
 @media only screen and (max-width: 375px) {
   nav ul li.dropdownMobile ul {
     display: none;
@@ -180,5 +224,39 @@ nav ul li.dropdown ul li a {
   .itemMd {
     margin-top: 5px;
     margin-bottom: 10px;
+  }
+  .itemMobileS {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .searchBar{
+    width: 200px;
+    height: 36px;
+    background-color: #0E396E;
+    color: #ffffff;
+    border-radius: 0px;
+    border: 0px;
+    margin-bottom: 0px;
+    margin-top: 00px;
+    margin-right: 32px;
+  }
+  .searchBar::placeholder{
+    color: white;
+    font-size: 16px;
+    font-family: "Lato";
+  
+  }
+  .searchButton{
+    position: relative;
+    width: 30px;
+    height: 36px;
+    border-radius: 0px;
+    background-color: #021f3e;
+    color: #ffffff;
+    border: 0px solid white;
+    font-size: 16px;
+    font-family: "Lato";
+    margin-bottom: -20px;
+    margin-top: 0px;
   }
 }

@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from "react";
 import "../css/NewsMain.css";
 import { NavLink } from "react-router-dom";
-import { fetchNewsMain } from "../api/api";
+import { SearchNews } from "../api/api";
+import { useParams } from "react-router-dom";
 
-function NewsMain() {
-  const [stories, setStories] = useState([]);
+function Search() {
+    const [stories, setStories] = useState([]);
+    const { slug1 } = useParams();
 
   useEffect(() => {
     const loadStories = async () => {
-      const data = await fetchNewsMain();
+      const data = await SearchNews(slug1);
       setStories(data);
     };
-    loadStories();
-    
-  }, []);
+      loadStories();
+      
+  }, [slug1]);
   let imgUrl = [];
   if (stories.length > 0) {
     for (let i = 0; i < stories.length; i++) {
       const test =
-        "https://gumlet.assettype.com/" + stories[i].story["hero-image-s3-key"];
+        "https://gumlet.assettype.com/" + stories[i]["hero-image-s3-key"];
       imgUrl.push(test);
     }
   }
   let slugUrl = [];
   if (stories.length > 0) {
     for (let i = 0; i < stories.length; i++) {
-      const test = stories[i].story.slug.replace("news/", "");
+      const test = stories[i].slug.replace("news/", "");
       slugUrl.push(test);
     }
   }
@@ -50,14 +52,14 @@ function NewsMain() {
                           <div className="card-body">
                             <div>
                               <label className="author">
-                                <b>By</b> {story.story["author-name"]}
+                                <b>By</b> {story["author-name"]}
                               </label>
                             </div>
                             <h5 className="card-title-bot">
-                              {story.story.headline}
+                              {story.headline}
                             </h5>
                             <p className="card-text-bot">
-                              {story.story.subheadline}
+                              {story.subheadline}
                             </p>
                           </div>
                         </NavLink>
@@ -80,4 +82,4 @@ function NewsMain() {
   );
 }
 
-export default NewsMain;
+export default Search;
