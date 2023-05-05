@@ -72,8 +72,14 @@ body {
 .add-box11 {
   padding-left: 16px;
 }
-
+.savedStoryError {
+  margin-right: 420px;
+}
 @media only screen and (max-width: 375px) {
+  .savedStoryError {
+    margin-right: 0px;
+  }
+
   .news-container1 {
     width: 343px;
     height: minmax(min-content, 4303.42px);

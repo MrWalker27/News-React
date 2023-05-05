@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import NewsMain from "./components/NewsMain";
 import Footer from "./components/footer";
 import Search from "./components/Search";
+import SavedStories from "./components/SavedStories";
 
 function App() {
   
@@ -35,6 +36,12 @@ function App() {
           path="/Search/:slug1"
           element={
             <Search />
+          }
+        />
+        <Route
+          path="/SavedStories"
+          element={
+            <SavedStories />
           }
         />
       </Routes>

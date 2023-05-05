@@ -126,7 +126,7 @@ function Nav() {
             </a>
             <ul className="dropdown-menu">
               <li className="itemd">
-                <NavLink to="/News-React-api">Subscribe</NavLink>
+                <NavLink to="/SavedStories">Saved Stories</NavLink>
               </li>
               <li className="itemd">
                 <NavLink to="/News-React-api">Creative Showcase</NavLink>
@@ -265,7 +265,7 @@ function Nav() {
         </a>
         <ul className={moreState ? "mobileItemShow" : "mobileItemHide"}>
           <li className="itemMd" style={{ marginTop: "10px" }}>
-            <NavLink to="/about">Subscribe</NavLink>
+            <NavLink to="/SavedStories">Saved Stories</NavLink>
           </li>
           <li className="itemMd">
             <NavLink to="/contact">Creative Showcase</NavLink>
