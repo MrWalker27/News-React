@@ -16,7 +16,7 @@ function Story() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const savedStories = useSelector((state) => state.myArray);
+  const savedStories = useSelector((state) => state.savedStoryReducer.myArray);
 
   const mainImgUrl =
     "https://gumlet.assettype.com/" + story["hero-image-s3-key"];
@@ -37,6 +37,7 @@ function Story() {
     return () => clearTimeout(timer); 
   }, []);
 
+  
   const type = savedStories.some((item) => item.headline === story.headline)
     ? "same"
     : "nsame";

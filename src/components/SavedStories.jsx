@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/NewsMain.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function SavedStories() {
-    const savedStories = useSelector((state) => state.myArray);
-    const [stories, setStories] = useState([]);
+  const savedStories = useSelector((state) => state.savedStoryReducer.myArray);
+  const [stories, setStories] = useState([]);
 
-    React.useEffect(() => {
-        setStories(savedStories);
-      }, [savedStories]);
-  
+  React.useEffect(() => {
+    setStories(savedStories);
+  }, [savedStories]);
+
   let imgUrl = [];
   if (stories.length > 0) {
     for (let i = 0; i < stories.length; i++) {
@@ -33,40 +33,41 @@ function SavedStories() {
         <h1 className="heading">Saved Stories</h1>
         <table style={{ marginTop: "20px" }}>
           <tr>
-                      <td><>
-                          {stories.length == 0 && (
-                              <h2 className="savedStoryError">No Stories Saved Yet !!</h2>
-                          )}
-              {stories.length > 0 && (
-                <>
-                  <div className="card-container1">
-                    {stories.slice().map((story, index) => (
-                      <div className="card1">
-                        <NavLink
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={"/Story/" + slugUrl[index]}
-                        >
-                          <img src={imgUrl[index]} className="card-img-bot" />
-                          <div className="card-body">
-                            <div>
-                              <label className="author">
-                                <b>By</b> {story["author-name"]}
-                              </label>
+            <td>
+              <>
+                {stories.length == 0 && (
+                  <h2 className="savedStoryError">No Stories Saved Yet !!</h2>
+                )}
+                {stories.length > 0 && (
+                  <>
+                    <div className="card-container1">
+                      {stories.slice().map((story, index) => (
+                        <div className="card1">
+                          <NavLink
+                            style={{ textDecoration: "none", color: "black" }}
+                            to={"/Story/" + slugUrl[index]}
+                          >
+                            <img src={imgUrl[index]} className="card-img-bot" />
+                            <div className="card-body">
+                              <div>
+                                <label className="author">
+                                  <b>By</b> {story["author-name"]}
+                                </label>
+                              </div>
+                              <h5 className="card-title-bot">
+                                {story.headline}
+                              </h5>
+                              <p className="card-text-bot">
+                                {story.subheadline}
+                              </p>
                             </div>
-                            <h5 className="card-title-bot">
-                              {story.headline}
-                            </h5>
-                            <p className="card-text-bot">
-                              {story.subheadline}
-                            </p>
-                          </div>
-                        </NavLink>
-                      </div>
-                    ))}
-                  </div>
-                </>
-                          )}
-                          </>
+                          </NavLink>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </>
             </td>
             <td style={{ verticalAlign: "top" }}>
               {" "}
