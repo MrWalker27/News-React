@@ -77,14 +77,14 @@ nav a {
   font-weight: 600;
   text-align: center;
 }
-.itemd{
+.itemd {
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.itemd:hover{
-  background-color: #0E396E;
+.itemd:hover {
+  background-color: #0e396e;
 }
 .dropdown-menu {
   width: 200px !important;
@@ -111,7 +111,7 @@ nav ul li.dropdown ul li a {
 .navMobileShow {
   display: none;
 }
-.searchCont{
+.searchCont {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -121,32 +121,31 @@ nav ul li.dropdown ul li a {
   height: auto;
   flex-direction: column;
 }
-.searchContH{
+.searchContH {
   display: none;
 }
-.searchHr{
+.searchHr {
   border: 1px solid white;
   width: 1025px;
   margin-bottom: 19px;
 }
-.searchBar{
+.searchBar {
   width: 678.97px;
   margin-bottom: 19px;
   height: 36px;
   margin-right: 48px;
-  background-color: #0E396E;
+  background-color: #0e396e;
   color: #ffffff;
   border-radius: 0px;
   border: 0px;
   padding-left: 16px;
 }
-.searchBar::placeholder{
+.searchBar::placeholder {
   color: white;
   font-size: 16px;
   font-family: "Lato";
-
 }
-.searchButton{
+.searchButton {
   width: 96px;
   height: 36px;
   border-radius: 0px;
@@ -156,7 +155,56 @@ nav ul li.dropdown ul li a {
   font-size: 16px;
   font-family: "Lato";
 }
+
+.loginBox {
+  width: 500px;
+  /* height: 200px; */
+  background-color: #f1f1f1;
+  position: fixed;
+  top: 20%;
+  left: 40%;
+  z-index: 17;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato";
+  padding-top: 80px;
+  border-radius: 5px;
+}
+.loginBtn {
+  text-align: center;
+  font-family: "Lato";
+  margin: 10px auto;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 9px 24px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #021f3e;
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
+.loginMobile {
+  display: "none";
+}
 @media only screen and (max-width: 375px) {
+  .loginBox {
+    display: none;
+  }
+  .loginMobile {
+    width: 300px;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    z-index: 17;
+    display: flex;
+    flex-direction: column;
+    font-family: "Lato";
+    padding-top: 80px;
+    border-radius: 5px;
+  }
   nav ul li.dropdownMobile ul {
     display: none;
     position: absolute;
@@ -229,10 +277,10 @@ nav ul li.dropdown ul li a {
     display: block;
     margin-bottom: 10px;
   }
-  .searchBar{
+  .searchBar {
     width: 200px;
     height: 36px;
-    background-color: #0E396E;
+    background-color: #0e396e;
     color: #ffffff;
     border-radius: 0px;
     border: 0px;
@@ -240,13 +288,12 @@ nav ul li.dropdown ul li a {
     margin-top: 00px;
     margin-right: 32px;
   }
-  .searchBar::placeholder{
+  .searchBar::placeholder {
     color: white;
     font-size: 16px;
     font-family: "Lato";
-  
   }
-  .searchButton{
+  .searchButton {
     position: relative;
     width: 30px;
     height: 36px;

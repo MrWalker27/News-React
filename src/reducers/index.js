@@ -1,8 +1,10 @@
 import savedStoryReducer from "./savedstories";
+import userDataReducer from "./userData";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    savedStoryReducer
+    savedStoryReducer,
+    userDataReducer
 })
 
 export default rootReducer;
