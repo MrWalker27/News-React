@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import CryptoJS from "crypto-js";
 
 function Nav() {
   const userLogin = useSelector((state) => state.userDataReducer.userData);
@@ -33,7 +34,11 @@ function Nav() {
   const handleLogin = () => {
     if (
       userLogin.some(
-        (item) => item.email === email && item.password === password
+        (item) =>
+          item.email === email &&
+          CryptoJS.AES.decrypt(item.encryptedMessage, "XkhZG4fW2t2W", {
+            padding: CryptoJS.pad.Pkcs7,
+          }).toString(CryptoJS.enc.Utf8) === password
       )
     ) {
       setCpasserror(false);
@@ -84,7 +89,10 @@ function Nav() {
       setEmailDuperror(true);
     } else {
       setEmailDuperror(false);
-      const credentials = { email, password };
+      const encryptedMessage = CryptoJS.AES.encrypt(password, "XkhZG4fW2t2W", {
+        padding: CryptoJS.pad.Pkcs7,
+      }).toString();
+      const credentials = { email, encryptedMessage };
       dispatch({ type: "SAVE_CREDENTIALS", payload: credentials });
       setConfirmationMsg(true);
       setTimeout(() => {
@@ -111,9 +119,8 @@ function Nav() {
           setCpasserror(true);
         } else {
           setCpasserror(false);
-          
+
           handleButtonClick();
-          
         }
       }
     }
