@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import { useEffect} from 'react';
 import "../css/NewsMain.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function SavedStories() {
   const savedStories = useSelector((state) => state.savedStoryReducer.myArray);
+  const loginInfo = useSelector((state) => state.loginDataReducer.loginData);
   const [stories, setStories] = useState([]);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+
+  
 
   React.useEffect(() => {
     setStories(savedStories);
@@ -28,7 +35,10 @@ function SavedStories() {
   }
   return (
     <>
-      <div className="news-container1">
+      <div style={{ display: !loginInfo ? "block" : "none" }}>
+      <h2 className="savedStoryError0">Please Login First!!</h2>
+    </div>
+      <div className="news-container1" style={{display: loginInfo ? "block" : "none"}}>
         <hr className="hr"></hr>
         <h1 className="heading">Saved Stories</h1>
         <table style={{ marginTop: "20px" }}>

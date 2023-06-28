@@ -75,11 +75,16 @@ body {
 .savedStoryError {
   margin-right: 420px;
 }
+.savedStoryError0 {
+  margin: 143px auto 500px 45%;
+}
 @media only screen and (max-width: 375px) {
   .savedStoryError {
     margin-right: 0px;
   }
-
+  .savedStoryError0 {
+    margin: 130px auto 200px 22%;
+  }
   .news-container1 {
     width: 343px;
     height: minmax(min-content, 4303.42px);

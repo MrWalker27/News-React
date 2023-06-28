@@ -9,7 +9,9 @@ import CryptoJS from "crypto-js";
 
 function Nav() {
   const userLogin = useSelector((state) => state.userDataReducer.userData);
+  const loginInfo = useSelector((state) => state.loginDataReducer.loginData);
   const dispatch = useDispatch();
+
   const [state, setState] = useState(false);
   const [searchState, setSearchState] = useState(false);
   const [newsState, setNewsState] = useState(false);
@@ -19,7 +21,6 @@ function Nav() {
   const [login, setLogin] = useState(false);
   const [signin, setSignin] = useState(true);
   const [signup, setSignup] = useState(false);
-  const [logedin, setLogedin] = useState(false);
   const [loginm, setLoginm] = useState(false);
   const [signinm, setSigninm] = useState(true);
   const [signupm, setSignupm] = useState(false);
@@ -45,7 +46,7 @@ function Nav() {
       setConfirmationMsg(true);
 
       setTimeout(() => {
-        setLogedin(true);
+        dispatch({ type: "LOGIN_INFO", payload: true });
         setLogin(false);
         setLoginm(false);
         setConfirmationMsg(false);
@@ -56,6 +57,7 @@ function Nav() {
   };
   const loginf = (email0, pass0) => {
     if (email0 == "") {
+      console.log(loginInfo);
       setEmailerror(true);
     } else {
       setEmailerror(false);
@@ -96,7 +98,7 @@ function Nav() {
       dispatch({ type: "SAVE_CREDENTIALS", payload: credentials });
       setConfirmationMsg(true);
       setTimeout(() => {
-        setLogedin(true);
+        dispatch({ type: "LOGIN_INFO", payload: true });
         setLogin(false);
         setLoginm(false);
         setConfirmationMsg(false);
@@ -231,13 +233,13 @@ function Nav() {
               </li>
             </ul>
           </li>
-          <li className={!logedin ? "item" : "hide"}>
+          <li className={!loginInfo ? "item" : "hide"}>
             <NavLink to="#" onClick={() => setLogin(true)}>
               Login
             </NavLink>
           </li>
-          <li className={logedin ? "item" : "hide"}>
-            <NavLink to="#" onClick={() => setLogedin(false)}>
+          <li className={loginInfo ? "item" : "hide"}>
+            <NavLink to="#" onClick={() => dispatch({ type: "LOGIN_INFO", payload: false })}>
               Logout
             </NavLink>
           </li>
@@ -388,13 +390,13 @@ function Nav() {
           </li>
         </ul>
         <li
-          className={!logedin ? "itemMobile" : "hide"}
+          className={!loginInfo ? "itemMobile" : "hide"}
           onClick={() => setLoginm(true)}
         >
           <NavLink to="#">Login</NavLink>
         </li>
-        <li className={logedin ? "itemMobile" : "hide"}>
-          <NavLink to="#" onClick={() => setLogedin(false)}>
+        <li className={loginInfo ? "itemMobile" : "hide"}>
+          <NavLink to="#" onClick={() => dispatch({ type: "LOGIN_INFO", payload: false })}>
             Logout
           </NavLink>
         </li>

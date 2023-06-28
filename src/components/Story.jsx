@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useLocation } from 'react-router-dom';
+ 
 
 function Story() {
   const [story, setStory] = useState([]);
@@ -16,6 +17,7 @@ function Story() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const loginInfo = useSelector((state) => state.loginDataReducer.loginData);
   const savedStories = useSelector((state) => state.savedStoryReducer.myArray);
 
   const mainImgUrl =
@@ -71,14 +73,14 @@ function Story() {
               <button
                 className="saveStoryButton"
                 onClick={saveStory}
-                style={{ display: type === "same" ? "none" : "inline-block" }}
+                style={{ display: ((type === "same") && loginInfo) ? "none" : "inline-block" }}
               >
                 Save Story
               </button>
               <button
                 className="unsaveStoryButton"
                 onClick={unsaveStory}
-                style={{ display: type === "same" ? "inline-block" : "none" }}
+                style={{ display: (type === "same" && loginInfo) ? "inline-block" : "none" }}
               >
                 UnSave Story
               </button>
