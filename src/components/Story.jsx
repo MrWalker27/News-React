@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { fetchStoryBySlug } from "../api/api";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useLocation } from 'react-router-dom';
- 
+import { useLocation } from "react-router-dom";
 
 function Story() {
   const [story, setStory] = useState([]);
@@ -19,6 +18,7 @@ function Story() {
   const dispatch = useDispatch();
   const loginInfo = useSelector((state) => state.loginDataReducer.loginData);
   const savedStories = useSelector((state) => state.savedStoryReducer.myArray);
+  const email = useSelector((state) => state.loginDataReducer.email);
 
   const mainImgUrl =
     "https://gumlet.assettype.com/" + story["hero-image-s3-key"];
@@ -36,23 +36,37 @@ function Story() {
     const timer = setTimeout(() => {
       setShowError(true);
     }, 700);
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, []);
 
-  
-  const type = savedStories.some((item) => item.headline === story.headline)
+  const type = savedStories
+    .filter((item) => item.email === email)
+    .map((item) => item.sluger)
+    .some((item) => item.headline === story.headline)
     ? "same"
     : "nsame";
 
   const saveStory = () => {
-    dispatch({ type: "ADD_ELEMENT", payload: story });
+    dispatch({
+      type: "ADD_ELEMENT",
+      payload: {
+        email: email,
+        sluger: story,
+      },
+    });
     setTimeout(() => {
       navigate("/SavedStories");
     }, 1000);
   };
 
   const unsaveStory = () => {
-    dispatch({ type: "REMOVE_ELEMENT", payload: story });
+    dispatch({
+      type: "REMOVE_ELEMENT",
+      payload: {
+        email: email,
+        sluger: story,
+      },
+    });
     navigate("/SavedStories");
   };
 
@@ -73,14 +87,22 @@ function Story() {
               <button
                 className="saveStoryButton"
                 onClick={saveStory}
-                style={{ display: ((type === "same") && loginInfo) ? "none" : "inline-block" }}
+                style={
+                  loginInfo
+                    ? { display: type === "same" ? "none" : "inline-block" }
+                    : { display: "none" }
+                }
               >
                 Save Story
               </button>
               <button
                 className="unsaveStoryButton"
                 onClick={unsaveStory}
-                style={{ display: (type === "same" && loginInfo) ? "inline-block" : "none" }}
+                style={
+                  loginInfo
+                    ? { display: type === "same" ? "inline-block" : "none" }
+                    : { display: "none" }
+                }
               >
                 UnSave Story
               </button>

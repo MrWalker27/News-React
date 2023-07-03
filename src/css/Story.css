@@ -111,6 +111,12 @@
   grid-column: 2;
   padding-left: 32px;
 }
+.hide3{
+display: none;
+}
+.show3{
+  display: none;
+}
 @media only screen and (max-width: 375px) {
   .containerE {
     width: 343px;

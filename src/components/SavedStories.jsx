@@ -5,18 +5,16 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function SavedStories() {
+  const email = useSelector((state) => state.loginDataReducer.email);
   const savedStories = useSelector((state) => state.savedStoryReducer.myArray);
   const loginInfo = useSelector((state) => state.loginDataReducer.loginData);
   const [stories, setStories] = useState([]);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-
   
 
   React.useEffect(() => {
-    setStories(savedStories);
+    setStories(savedStories.filter((item) => item.email === email).map((item) => item.sluger));
   }, [savedStories]);
+
 
   let imgUrl = [];
   if (stories.length > 0) {
@@ -50,7 +48,7 @@ function SavedStories() {
                 )}
                 {stories.length > 0 && (
                   <>
-                    <div className="card-container1">
+                    <div className="card-container1" >
                       {stories.slice().map((story, index) => (
                         <div className="card1">
                           <NavLink

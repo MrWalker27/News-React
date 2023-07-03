@@ -31,7 +31,7 @@ function Nav() {
   const [confirmationMsg, setConfirmationMsg] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleLogin = () => {
     if (
       userLogin.some(
@@ -46,10 +46,18 @@ function Nav() {
       setConfirmationMsg(true);
 
       setTimeout(() => {
-        dispatch({ type: "LOGIN_INFO", payload: true });
+        dispatch({ 
+          type: "LOGIN_INFO", 
+          payload: { 
+            loginData: true,
+            email: email
+          }
+        });
+        navigate(`/News-React-api/`);
         setLogin(false);
         setLoginm(false);
         setConfirmationMsg(false);
+        
       }, 1000);
     } else {
       setCpasserror(true);
@@ -57,7 +65,6 @@ function Nav() {
   };
   const loginf = (email0, pass0) => {
     if (email0 == "") {
-      console.log(loginInfo);
       setEmailerror(true);
     } else {
       setEmailerror(false);
@@ -75,7 +82,7 @@ function Nav() {
     setMediaState(false);
     setMediaState(false);
   };
-  const navigate = useNavigate();
+  
 
   const searchnews = (text) => {
     setSearchState(false);
@@ -98,7 +105,13 @@ function Nav() {
       dispatch({ type: "SAVE_CREDENTIALS", payload: credentials });
       setConfirmationMsg(true);
       setTimeout(() => {
-        dispatch({ type: "LOGIN_INFO", payload: true });
+        dispatch({ 
+          type: "LOGIN_INFO", 
+          payload: { 
+            loginData: true,
+            email: email
+          }
+        });
         setLogin(false);
         setLoginm(false);
         setConfirmationMsg(false);
