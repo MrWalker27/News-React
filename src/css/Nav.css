@@ -1,0 +1,309 @@
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #021f3e;
+  width: 1025px;
+  margin: auto;
+  height: 44px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.search1 {
+  width: 78.86 !important;
+  text-align: right;
+  color: white;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li.dropdown {
+  position: relative;
+  width: 157.69px;
+  text-align: center;
+}
+
+nav ul li.dropdown ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: #021f3e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+nav ul li.dropdown:hover ul {
+  display: block;
+}
+nav ul li.dropdown ul:hover {
+  display: block;
+}
+
+nav ul li.dropdown ul li {
+  margin-bottom: 10px;
+}
+
+nav ul li.dropdown ul li:last-child {
+  margin-bottom: 0;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+  font-weight: 600;
+}
+.item {
+  width: 157.69px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+  font-weight: 600;
+  text-align: center;
+}
+.itemd {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itemd:hover {
+  background-color: #0e396e;
+}
+.dropdown-menu {
+  width: 200px !important;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+nav ul li.dropdown ul li a {
+  display: block;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.hamburger {
+  display: none;
+}
+.itemMobile {
+  display: none;
+}
+.navMobileHide {
+  display: none;
+}
+.navMobileShow {
+  display: none;
+}
+.searchCont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #021f3e;
+  width: 1025px;
+  margin: auto;
+  height: auto;
+  flex-direction: column;
+}
+.searchContH {
+  display: none;
+}
+.searchHr {
+  border: 1px solid white;
+  width: 1025px;
+  margin-bottom: 19px;
+}
+.searchBar {
+  width: 678.97px;
+  margin-bottom: 19px;
+  height: 36px;
+  margin-right: 48px;
+  background-color: #0e396e;
+  color: #ffffff;
+  border-radius: 0px;
+  border: 0px;
+  padding-left: 16px;
+}
+.searchBar::placeholder {
+  color: white;
+  font-size: 16px;
+  font-family: "Lato";
+}
+.searchButton {
+  width: 96px;
+  height: 36px;
+  border-radius: 0px;
+  background-color: #021f3e;
+  color: #ffffff;
+  border: 1px solid white;
+  font-size: 16px;
+  font-family: "Lato";
+}
+
+.loginBox {
+  width: 500px;
+  /* height: 200px; */
+  background-color: #f1f1f1;
+  position: fixed;
+  top: 20%;
+  left: 40%;
+  z-index: 17;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato";
+  padding-top: 80px;
+  border-radius: 5px;
+}
+.loginBtn {
+  text-align: center;
+  font-family: "Lato";
+  margin: 10px auto;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 9px 24px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #021f3e;
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
+.loginMobile {
+  display: "none";
+}
+@media only screen and (max-width: 375px) {
+  .loginBox {
+    display: none;
+  }
+  .loginMobile {
+    width: 300px;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    z-index: 17;
+    display: flex;
+    flex-direction: column;
+    font-family: "Lato";
+    padding-top: 80px;
+    border-radius: 5px;
+  }
+  nav ul li.dropdownMobile ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: #021f3e;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  .dropdownMobile-menu {
+    display: none;
+  }
+  .nav ul li.dropdown {
+    position: relative;
+    width: 375px;
+    text-align: center;
+  }
+  .navMobileShow {
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+    align-items: center;
+  }
+  nav {
+    flex-direction: row;
+    height: auto;
+    width: 375px;
+    align-items: end;
+  }
+  .hamburger {
+    display: block;
+  }
+  .item {
+    display: none;
+  }
+  .dropdown {
+    display: none;
+  }
+  .search {
+    display: none;
+  }
+  .itemMobile {
+    display: block;
+
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .navMobile {
+    flex-direction: column;
+    width: 375px;
+    align-items: center;
+  }
+  .mobileItemShow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 375px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+  }
+  .mobileItemHide {
+    display: none;
+  }
+  .itemMd {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .itemMobileS {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .searchBar {
+    width: 200px;
+    height: 36px;
+    background-color: #0e396e;
+    color: #ffffff;
+    border-radius: 0px;
+    border: 0px;
+    margin-bottom: 0px;
+    margin-top: 00px;
+    margin-right: 32px;
+  }
+  .searchBar::placeholder {
+    color: white;
+    font-size: 16px;
+    font-family: "Lato";
+  }
+  .searchButton {
+    position: relative;
+    width: 30px;
+    height: 36px;
+    border-radius: 0px;
+    background-color: #021f3e;
+    color: #ffffff;
+    border: 0px solid white;
+    font-size: 16px;
+    font-family: "Lato";
+    margin-bottom: -20px;
+    margin-top: 0px;
+  }
+}
