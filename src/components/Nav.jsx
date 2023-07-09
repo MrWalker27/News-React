@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import emailjs from "@emailjs/browser";
 import CryptoJS from "crypto-js";
 
 function Nav() {
@@ -31,7 +32,126 @@ function Nav() {
   const [confirmationMsg, setConfirmationMsg] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [forgot, setForgot] = useState(false);
+  const [forgotm, setForgotm] = useState(false);
+  const [unknownEmailError, setUnknownEmailError] = useState(false);
+  const [inputOTP, setInputOTP] = useState(false);
+  const [inputOTPm, setInputOTPm] = useState(false);
+  const [tempemail, setTempemail] = useState("");
+  const [otpExp, setotpExp] = useState(false);
   const navigate = useNavigate();
+
+  const otpAuthenticate = (otp, pass, cpass) => {
+    if (
+      userLogin.some(
+        (item) =>
+          item.email === tempemail &&
+          CryptoJS.AES.decrypt(item.otp, "XkhZG4fW2t2W", {
+            padding: CryptoJS.pad.Pkcs7,
+          }).toString(CryptoJS.enc.Utf8) === otp
+      )
+    ) {
+      setEmailerror(false);
+      const passregex = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+      if (!passregex.test(pass)) {
+        setPasserror(true);
+      } else {
+        setPasserror(false);
+        if (pass != cpass) {
+          setCpasserror(true);
+        } else {
+          setCpasserror(false);
+          const pass5 = CryptoJS.AES.encrypt(pass, "XkhZG4fW2t2W", {
+            padding: CryptoJS.pad.Pkcs7,
+          }).toString();
+          const email5 = tempemail;
+          const credentials = { email5, pass5 };
+          dispatch({ type: "UPDATE_PASSWORD", payload: credentials });
+          setConfirmationMsg(true);
+          let param = {
+            to_email: email,
+          };
+          emailjs.send(
+            "service_e2f049s",
+            "template_fonsqcj",
+            param,
+            "x-vFEbNIiAufivVJn"
+          );
+          setTimeout(() => {
+            setConfirmationMsg(false);
+            setInputOTP(false);
+            setForgot(false);
+            setInputOTPm(false);
+            setForgotm(false);
+            setTempemail("");
+            window.location.reload();
+          }, 1000);
+        }
+      }
+    } else {
+      setEmailerror(true);
+    }
+  };
+  const generateRandomAlphabets = () => {
+    let randomAlphabets = "";
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    for (let i = 0; i < 6; i++) {
+      const randomIndex = Math.floor(Math.random() * alphabet.length);
+      const randomLetter = alphabet.charAt(randomIndex);
+      randomAlphabets += randomLetter;
+    }
+
+    return randomAlphabets;
+  };
+
+  const forgotPass = (emailForgot) => {
+    if (emailForgot == "") {
+      setEmailerror(true);
+      setUnknownEmailError(false);
+    } else {
+      setEmailerror(false);
+      if (userLogin.some((item) => item.email === emailForgot)) {
+        setUnknownEmailError(false);
+        genOTP(emailForgot);
+      } else {
+        setUnknownEmailError(true);
+      }
+    }
+  };
+
+  const genOTP = (email) => {
+    const otp = generateRandomAlphabets();
+    const pack = { email, otp };
+    let param = {
+      to_email: email,
+      message: otp,
+    };
+    emailjs.send(
+      "service_e2f049s",
+      "template_02yzzac",
+      param,
+      "x-vFEbNIiAufivVJn"
+    );
+    dispatch({ type: "FORGOT_PASSWORD", payload: pack });
+    setTempemail(email);
+    setConfirmationMsg(true);
+    setTimeout(() => {
+      setConfirmationMsg(false);
+      setInputOTP(true);
+      setotpExp(false);
+      setInputOTPm(true);
+    }, 1000);
+    setTimeout(() => {
+      setotpExp(true);
+      console.log(email);
+      let otp = "walker";
+
+      let pack = { email, otp };
+      dispatch({ type: "FORGOT_PASSWORD", payload: pack });
+    }, 900000);
+  };
+
   const handleLogin = () => {
     if (
       userLogin.some(
@@ -46,18 +166,17 @@ function Nav() {
       setConfirmationMsg(true);
 
       setTimeout(() => {
-        dispatch({ 
-          type: "LOGIN_INFO", 
-          payload: { 
+        dispatch({
+          type: "LOGIN_INFO",
+          payload: {
             loginData: true,
-            email: email
-          }
+            email: email,
+          },
         });
         navigate(`/News-React-api/`);
         setLogin(false);
         setLoginm(false);
         setConfirmationMsg(false);
-        
       }, 1000);
     } else {
       setCpasserror(true);
@@ -82,7 +201,6 @@ function Nav() {
     setMediaState(false);
     setMediaState(false);
   };
-  
 
   const searchnews = (text) => {
     setSearchState(false);
@@ -104,13 +222,22 @@ function Nav() {
       const credentials = { email, encryptedMessage };
       dispatch({ type: "SAVE_CREDENTIALS", payload: credentials });
       setConfirmationMsg(true);
+      let param = {
+        to_email: email,
+      };
+      emailjs.send(
+        "service_e2f049s",
+        "template_fonsqcj",
+        param,
+        "x-vFEbNIiAufivVJn"
+      );
       setTimeout(() => {
-        dispatch({ 
-          type: "LOGIN_INFO", 
-          payload: { 
+        dispatch({
+          type: "LOGIN_INFO",
+          payload: {
             loginData: true,
-            email: email
-          }
+            email: email,
+          },
         });
         setLogin(false);
         setLoginm(false);
@@ -247,12 +374,24 @@ function Nav() {
             </ul>
           </li>
           <li className={!loginInfo ? "item" : "hide"}>
-            <NavLink to="#" onClick={() => setLogin(true)}>
+            <NavLink
+              to="#"
+              onClick={() => (
+                setLogin(true),
+                setSignin(true),
+                setSignup(false),
+                setForgot(false),
+                setInputOTP(false)
+              )}
+            >
               Login
             </NavLink>
           </li>
           <li className={loginInfo ? "item" : "hide"}>
-            <NavLink to="#" onClick={() => dispatch({ type: "LOGIN_INFO", payload: false })}>
+            <NavLink
+              to="#"
+              onClick={() => dispatch({ type: "LOGIN_INFO", payload: false })}
+            >
               Logout
             </NavLink>
           </li>
@@ -404,12 +543,21 @@ function Nav() {
         </ul>
         <li
           className={!loginInfo ? "itemMobile" : "hide"}
-          onClick={() => setLoginm(true)}
+          onClick={() => (
+            setLoginm(true),
+            setSignin(true),
+            setSignup(false),
+            setForgot(false),
+            setInputOTP(false)
+          )}
         >
           <NavLink to="#">Login</NavLink>
         </li>
         <li className={loginInfo ? "itemMobile" : "hide"}>
-          <NavLink to="#" onClick={() => dispatch({ type: "LOGIN_INFO", payload: false })}>
+          <NavLink
+            to="#"
+            onClick={() => dispatch({ type: "LOGIN_INFO", payload: false })}
+          >
             Logout
           </NavLink>
         </li>
@@ -542,12 +690,14 @@ function Nav() {
         </label>
         <button
           className="loginBtn"
-          onClick={() =>
+          onClick={() => (
             loginf(
               document.getElementById("lemail").value,
               document.getElementById("lpass").value
-            )
-          }
+            ),
+            setEmail(""),
+            setPassword("")
+          )}
         >
           Login
         </button>
@@ -561,8 +711,255 @@ function Nav() {
         >
           Dont have an account?
         </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "-10px auto 30px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (setSignin(false), setForgot(true))}
+        >
+          Forgot Passowrd?
+        </label>
       </div>
+      <div
+        className="loginBox"
+        style={{ display: login && forgot ? "flex" : "none" }}
+      >
+        <label
+          style={{
+            display: "inline",
+            position: "relative",
+            left: "90%",
+            marginTop: "-60px",
+            fontSize: "23px",
+            cursor: "pointer",
+          }}
+          onClick={() => setLogin(false)}
+        >
+          X
+        </label>
 
+        <h1
+          style={{
+            margin: "50px auto 40px auto",
+            fontSize: "40px",
+            color: "#021f3e",
+          }}
+        >
+          Forgot Password
+        </h1>
+        <input
+          placeholder="Email"
+          id="femail"
+          style={{
+            margin: "0px auto",
+            width: "300px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 0px auto",
+            color: "red",
+            display: emailerror ? "block" : "none",
+          }}
+        >
+          Email cant be left empty!!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 0px auto",
+            color: "red",
+            display: unknownEmailError ? "block" : "none",
+          }}
+        >
+          This email is not registered with us !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 0px auto",
+            color: "green",
+            display: confirmationMsg ? "block" : "none",
+          }}
+        >
+          OTP Sent succesfully !!
+        </label>
+        <button
+          className="loginBtn"
+          style={{ marginTop: "30px" }}
+          onClick={() => forgotPass(document.getElementById("femail").value)}
+        >
+          Send OTP
+        </button>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "0px auto 30px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (setSignin(true), setForgot(false))}
+        >
+          Try Logging in?
+        </label>
+      </div>
+      <div
+        className="loginBox"
+        style={{ display: login && inputOTP ? "flex" : "none" }}
+      >
+        <label
+          style={{
+            display: "inline",
+            position: "relative",
+            left: "90%",
+            marginTop: "-60px",
+            fontSize: "23px",
+            cursor: "pointer",
+          }}
+          onClick={() => (setLogin(false), setInputOTP(false))}
+        >
+          X
+        </label>
+
+        <h1
+          style={{
+            margin: "50px auto 40px auto",
+            fontSize: "40px",
+            color: "#021f3e",
+          }}
+        >
+          OTP Authentication
+        </h1>
+        <input
+          placeholder="OTP"
+          id="otp"
+          style={{
+            margin: "0px auto",
+            width: "300px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <input
+          placeholder="Password (min 6 digit and 1 number)"
+          id="otppass1"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            margin: "30px auto",
+            width: "300px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <input
+          placeholder="Confirm Password"
+          id="otppass2"
+          type="password"
+          style={{
+            margin: "30px auto",
+            width: "300px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+            marginTop: "0px",
+          }}
+        ></input>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 0px auto",
+            color: "red",
+            display: emailerror ? "block" : "none",
+          }}
+        >
+          OTP Doesn't match!!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: passerror ? "block" : "none",
+          }}
+        >
+          Please make a stronger password !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: otpExp ? "block" : "none",
+          }}
+        >
+          Your OTP has expired !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: cpasserror ? "block" : "none",
+          }}
+        >
+          Password and Confirm password doesn't match !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 0px auto",
+            color: "green",
+            display: confirmationMsg ? "block" : "none",
+          }}
+        >
+          Paswword changed succesfully !!
+        </label>
+        <button
+          className="loginBtn"
+          style={{ display: otpExp ? "block" : "none", marginTop: "10px" }}
+          onClick={() => (setInputOTP(false), setForgotm(true))}
+        >
+          Generate New OTP
+        </button>
+        <button
+          className="loginBtn"
+          style={{ marginTop: "30px", display: !otpExp ? "block" : "none" }}
+          onClick={() =>
+            otpAuthenticate(
+              document.getElementById("otp").value,
+              document.getElementById("otppass1").value,
+              document.getElementById("otppass2").value
+            )
+          }
+        >
+          Continue
+        </button>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "0px auto 30px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (
+            setSignin(true), setForgot(false), setInputOTP(false)
+          )}
+        >
+          Try Logging in?
+        </label>
+      </div>
       <div
         className="loginBox"
         style={{ display: login && signup ? "flex" : "none" }}
@@ -833,6 +1230,232 @@ function Nav() {
           onClick={() => (setSigninm(false), setSignupm(true))}
         >
           Dont have an account?
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "-10px auto 30px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (setSigninm(false), setForgotm(true))}
+        >
+          Forgot Passowrd?
+        </label>
+      </div>
+      <div
+        className="loginMobile"
+        style={{ display: loginm && forgotm ? "flex" : "none" }}
+      >
+        <label
+          style={{
+            display: "inline",
+            position: "relative",
+            left: "90%",
+            marginTop: "-60px",
+            fontSize: "15px",
+            cursor: "pointer",
+          }}
+          onClick={() => setLoginm(false)}
+        >
+          X
+        </label>
+
+        <h1
+          style={{
+            margin: "42px auto 32px auto",
+            fontSize: "32px",
+            color: "#021f3e",
+          }}
+        >
+          Forgot Password
+        </h1>
+        <input
+          placeholder="Email"
+          id="femailm"
+          style={{
+            margin: "0px auto",
+            width: "200px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: emailerror ? "block" : "none",
+          }}
+        >
+          Email cant be left empty!!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: unknownEmailError ? "block" : "none",
+          }}
+        >
+          This email is not registered with us !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "green",
+            display: confirmationMsg ? "block" : "none",
+          }}
+        >
+          OTP Sent succesfully !!
+        </label>
+        <button
+          className="loginBtn"
+          onClick={() => forgotPass(document.getElementById("femailm").value)}
+        >
+          Send OTP
+        </button>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "0px auto 30px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (setSigninm(true), setForgotm(false))}
+        >
+          Try Logging in?
+        </label>
+      </div>
+      <div
+        className="loginMobile"
+        style={{ display: loginm && inputOTPm ? "flex" : "none" }}
+      >
+        <label
+          style={{
+            display: "inline",
+            position: "relative",
+            left: "90%",
+            marginTop: "-60px",
+            fontSize: "15px",
+            cursor: "pointer",
+          }}
+          onClick={() => setLoginm(false)}
+        >
+          X
+        </label>
+
+        <h1
+          style={{
+            margin: "42px auto 32px auto",
+            fontSize: "32px",
+            color: "#021f3e",
+          }}
+        >
+          OTP Authentication
+        </h1>
+        <input
+          placeholder="OTP"
+          id="otpm"
+          style={{
+            margin: "0px auto",
+            width: "200px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <input
+          placeholder="Password (min 6 digit and 1 number)"
+          id="otppass1m"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            margin: "20px auto",
+            width: "200px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <input
+          placeholder="Confirm Password"
+          id="otppass2m"
+          type="password"
+          style={{
+            margin: "10px auto",
+            width: "200px",
+            height: "20px",
+            padding: "13px",
+            borderRadius: "5px",
+            border: "1px solid gray",
+          }}
+        ></input>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: emailerror ? "block" : "none",
+          }}
+        >
+          OTP Doesn't match!!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: passerror ? "block" : "none",
+          }}
+        >
+          Please make a stronger password !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "red",
+            display: cpasserror ? "block" : "none",
+          }}
+        >
+          Password and Confirm password doesn't match !!
+        </label>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 30px auto",
+            color: "green",
+            display: confirmationMsg ? "block" : "none",
+          }}
+        >
+          Paswword changed succesfully !!
+        </label>
+        <button
+          className="loginBtn"
+          onClick={() =>
+            otpAuthenticate(
+              document.getElementById("otpm").value,
+              document.getElementById("otppass1m").value,
+              document.getElementById("otppass2m").value
+            )
+          }
+        >
+          Continue
+        </button>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "0px auto 30px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (setSigninm(true), setForgotm(false))}
+        >
+          Try Logging in?
         </label>
       </div>
       <div
