@@ -18,6 +18,5 @@ export const fetchNewsMain = async () => {
 export const SearchNews = async (slug1) => {
   const url = `/api/v1/search?q=${slug1}`;
   const response = await axios.get(url);
-  console.log(response.data.results);
   return response.data.results.stories.slice(0, 10);
 }
