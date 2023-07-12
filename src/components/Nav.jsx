@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import CryptoJS from "crypto-js";
+import {auth,provider} from "../api/firebase.js";
+import {signInWithPopup} from "firebase/auth";
 
 function Nav() {
   const userLogin = useSelector((state) => state.userDataReducer.userData);
@@ -40,6 +42,26 @@ function Nav() {
   const [tempemail, setTempemail] = useState("");
   const [otpExp, setotpExp] = useState(false);
   const navigate = useNavigate();
+
+  const handleFirebase = () =>{
+    signInWithPopup(auth,provider).then((data) =>{
+      
+      if(data.user.email != ""){
+        
+        navigate(`/News-React-api/`);
+        setLogin(false);
+        setLoginm(false);
+        dispatch({
+          type: "LOGIN_INFO",
+          payload: {
+            loginData: true,
+            email: data.user.email,
+          },
+        });
+      }
+      
+    })
+  };
 
   const otpAuthenticate = (otp, pass, cpass) => {
     if (
@@ -144,7 +166,6 @@ function Nav() {
     }, 1000);
     setTimeout(() => {
       setotpExp(true);
-      console.log(email);
       let otp = "walker";
 
       let pack = { email, otp };
@@ -688,6 +709,7 @@ function Nav() {
         >
           LogIn successful !!
         </label>
+        
         <button
           className="loginBtn"
           onClick={() => (
@@ -701,6 +723,16 @@ function Nav() {
         >
           Login
         </button>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 10px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (handleFirebase())}
+        >
+          Signin with Google
+        </label>
         <label
           style={{
             cursor: "pointer",
@@ -1221,6 +1253,16 @@ function Nav() {
         >
           Login
         </button>
+        <label
+          style={{
+            cursor: "pointer",
+            margin: "10px auto 10px auto",
+            color: "#021f3e",
+          }}
+          onClick={() => (handleFirebase())}
+        >
+          Signin with Google
+        </label>
         <label
           style={{
             cursor: "pointer",
