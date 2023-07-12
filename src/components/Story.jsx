@@ -121,10 +121,10 @@ function Story() {
             )}
           </div>
           <div className="add-box1">
-            <div className="add-content"></div>
+            <div className="add-content1"></div>
           </div>
           <div className="add-box2">
-            <div className="add-content"></div>
+            <div className="add-content2"></div>
           </div>
         </div>
       )}

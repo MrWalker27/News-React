@@ -70,7 +70,7 @@ function NewsMain() {
             <td style={{ verticalAlign: "top" }}>
               {" "}
               <div className="add-box11">
-                <div className="add-content"></div>
+                <div className="add-content1"></div>
               </div>
             </td>
           </tr>
