@@ -7,6 +7,12 @@ import NewsMain from "./components/NewsMain";
 import Footer from "./components/footer";
 import Search from "./components/Search";
 import SavedStories from "./components/SavedStories";
+import NewsAdvertisment from "./components/NewsAdvertisment.jsx";
+import NewsPeople from "./components/NewsPeople";
+import NewsCompanies from "./components/NewsCompanies";
+import ArticlesInterviews from "./components/ArticlesInterviews";
+import ArticlesPlain from "./components/ArticlesPlain";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   
@@ -27,9 +33,45 @@ function App() {
           }
         />
         <Route
+          path="/ArticlesInterviews"
+          element={
+            <ArticlesInterviews />
+          }
+        />
+        <Route
+          path="/ContactUs"
+          element={
+            <ContactUs />
+          }
+        />
+        <Route
+          path="/ArticlesPlain"
+          element={
+            <ArticlesPlain />
+          }
+        />
+        <Route
           path="/News"
           element={
             <NewsMain />
+          }
+        />
+        <Route
+          path="/NewsAdvertisment"
+          element={
+            <NewsAdvertisment />
+          }
+        />
+        <Route
+          path="/NewsCompanies"
+          element={
+            <NewsCompanies />
+          }
+        />
+        <Route
+          path="/NewsPeople"
+          element={
+            <NewsPeople />
           }
         />
         <Route

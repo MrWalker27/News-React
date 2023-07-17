@@ -15,6 +15,31 @@ export const fetchNewsMain = async () => {
   const response = await axios.get(url);
   return response.data.items.slice(0, 10);
 }
+export const fetchNewsAdvertisment = async () => {
+  const url = "/api/v1/collections/advertising";
+  const response = await axios.get(url);
+  return response.data.items.slice(0, 10);
+}
+export const fetchNewsPeople = async () => {
+  const url = "/api/v1/collections/people-spotting";
+  const response = await axios.get(url);
+  return response.data.items.slice(0, 10);
+}
+export const fetchNewsCompanies = async () => {
+  const url = "/api/v1/collections/companies";
+  const response = await axios.get(url);
+  return response.data.items.slice(0, 10);
+}
+export const fetchArticlesInterviews = async () => {
+  const url = "/api/v1/collections/interviews";
+  const response = await axios.get(url);
+  return response.data.items.slice(0, 10);
+}
+export const fetchArticlesPlain = async () => {
+  const url = "/api/v1/collections/plainspeak-with-sreekant";
+  const response = await axios.get(url);
+  return response.data.items.slice(0, 10);
+}
 export const SearchNews = async (slug1) => {
   const url = `/api/v1/search?q=${slug1}`;
   const response = await axios.get(url);

@@ -1,0 +1,14 @@
+.contactimg1{
+    display: block;
+}
+.contactimg2{
+    display: none;
+}
+@media only screen and (max-width:375px) {
+    .contactimg2{
+        display: block;
+    }
+    .contactimg1{
+        display: none;
+    }
+}

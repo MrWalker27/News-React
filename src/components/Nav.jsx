@@ -302,77 +302,25 @@ function Nav() {
             </a>
             <ul className="dropdown-menu">
               <li className="itemd">
-                <NavLink to="/News">Advertising</NavLink>
+                <NavLink to="/NewsAdvertisment">Advertising</NavLink>
               </li>
               <li className="itemd">
-                <NavLink to="/News-React-api">Marketing</NavLink>
+                <NavLink to="/NewsPeople">People Spotting</NavLink>
               </li>
               <li className="itemd">
-                <NavLink to="/News-React-api">Influencer Marketing</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Branded Content</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Brands</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">People Spotting</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Companies</NavLink>
+                <NavLink to="/NewsCompanies">Companies</NavLink>
               </li>
             </ul>
           </li>
           <li className="dropdown">
-            <a href="#" className="dropdown-toggle,item">
-              Articles
+            <a href="/ArticlesInterviews" className="dropdown-toggle,item">
+            Interviews
             </a>
-            <ul className="dropdown-menu">
-              <li className="itemd">
-                <NavLink to="/News-React-api">Interview</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Point of View</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Profile</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Guest Articles</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Marketing Intiative</NavLink>
-              </li>
-            </ul>
           </li>
           <li className="dropdown">
-            <a href="#" className="dropdown-toggle,item">
-              Media
+            <a href="/ArticlesPlain" className="dropdown-toggle,item">
+            PlainSpeak
             </a>
-            <ul className="dropdown-menu">
-              <li className="itemd">
-                <NavLink to="/News-React-api">Television</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Digital</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">OTT Streaming</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Social Media</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Print</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">OOH</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Radio</NavLink>
-              </li>
-            </ul>
           </li>
 
           <li className="dropdown">
@@ -384,13 +332,7 @@ function Nav() {
                 <NavLink to="/SavedStories">Saved Stories</NavLink>
               </li>
               <li className="itemd">
-                <NavLink to="/News-React-api">Creative Showcase</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Careers</NavLink>
-              </li>
-              <li className="itemd">
-                <NavLink to="/News-React-api">Contact Us</NavLink>
+                <NavLink to="/ContactUs">Contact Us</NavLink>
               </li>
             </ul>
           </li>
@@ -464,86 +406,24 @@ function Nav() {
           <span className="itemMobile">News</span>
         </a>
         <ul className={newsState ? "mobileItemShow" : "mobileItemHide"}>
-          <li className="itemMd" style={{ marginTop: "10px" }}>
-            <NavLink to="/News">Advertising</NavLink>
+        <li className="itemMd" style={{ marginTop: "10px" }}>
+            <NavLink to="/NewsAdvertisment">Advertising</NavLink>
           </li>
           <li className="itemMd">
-            <NavLink to="/News-React-api">Marketing</NavLink>
+            <NavLink to="/NewsPeople">People Spotting</NavLink>
           </li>
           <li className="itemMd">
-            <NavLink to="/News-React-api">Influencer Marketing</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Branded Content</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Brands</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Print</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">OOH</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Radio</NavLink>
+            <NavLink to="/NewsCompanies">Companies</NavLink>
           </li>
         </ul>
         <a
-          href="#"
-          onClick={() => (clearStates(), setArticlesState(!articlesState))}
+          href="/ArticlesInterviews"
         >
-          <span className="itemMobile">Articles</span>
+          <span className="itemMobile">Interviews</span>
         </a>
-        <ul className={articlesState ? "mobileItemShow" : "mobileItemHide"}>
-          <li className="itemMd" style={{ marginTop: "10px" }}>
-            <NavLink to="/News-React-api">Advertising</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Marketing</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Influencer Marketing</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Branded Content</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Brands</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">People Spotting</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Companies</NavLink>
-          </li>
-        </ul>
-        <a href="#" onClick={() => (clearStates(), setMediaState(!mediaState))}>
-          <span className="itemMobile">Media</span>
+        <a href="/ArticlesPlain" >
+          <span className="itemMobile">Plainspeak</span>
         </a>
-        <ul className={mediaState ? "mobileItemShow" : "mobileItemHide"}>
-          <li className="itemMd" style={{ marginTop: "10px" }}>
-            <NavLink to="/News-React-api">Advertising</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Television</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Digital</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">OTT Streaming</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Social Media</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">People Spotting</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/News-React-api">Companies</NavLink>
-          </li>
-        </ul>
 
         <a href="#" onClick={() => (clearStates(), setMoreState(!moreState))}>
           <span className="itemMobile">More</span>
@@ -553,13 +433,7 @@ function Nav() {
             <NavLink to="/SavedStories">Saved Stories</NavLink>
           </li>
           <li className="itemMd">
-            <NavLink to="/contact">Creative Showcase</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/faq">Careers</NavLink>
-          </li>
-          <li className="itemMd">
-            <NavLink to="/faq">Contact Us</NavLink>
+            <NavLink to="/ContactUs">Contact Us</NavLink>
           </li>
         </ul>
         <li
